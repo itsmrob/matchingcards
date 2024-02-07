@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import Board from './components/Board/Board';
+import History from './components/History';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Matching Cards </h1>
+      <h3>Total Score: 0</h3>
+      <div className="game-container">
+        <Board />
+        <History />
+      </div>
     </div>
   );
 }
