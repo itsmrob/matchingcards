@@ -19,8 +19,8 @@ const Game = () => {
 
     const [cards, setcards] = useState(shuffledCards);
 
-    function handlePlay() {
-
+    function handlePlay(newCards: CardValues[]) {
+        setcards(newCards)
     }
 
     return (
