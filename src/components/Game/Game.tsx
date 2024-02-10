@@ -20,6 +20,7 @@ const Game = () => {
     const [cards, setcards] = useState(shuffledCards);
 
     function handlePlay(newCards: CardValues[]) {
+        console.log('updatedCards', newCards)
         setcards(newCards)
     }
 
