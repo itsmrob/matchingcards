@@ -6,10 +6,10 @@ import './Board.css'
 
 interface BoardProps {
     cards: CardValues[],
-    onPlay: (i: CardValues[]) => void;
+    gameScore: (score: number) => void;
 }
 
-const Board: React.FC<BoardProps> = ({ cards, onPlay }) => {
+const Board: React.FC<BoardProps> = ({ cards, gameScore }) => {
     const [selectedCards, setSelectedCards] = useState<CardValues[]>([]);
     const [gameCards, setGameCards] = useState<CardValues[]>([...cards]);
 
@@ -31,16 +31,16 @@ const Board: React.FC<BoardProps> = ({ cards, onPlay }) => {
         if (selectedCards.length === 2) {
             const [card1, card2] = selectedCards;
             const isMatch = card1.pairId === card2.pairId;
-            if (isMatch) {
-                setGameCards(updateGameBoard(card1, true));
-            } else {
-                setTimeout(() => {
-                    setGameCards(updateGameBoard(card1, false));
-                }, 1000);
-            }
-            setSelectedCards([]);
+            const timerId = setTimeout(() => {
+                setGameCards(updateGameBoard(card1, isMatch));
+                if (isMatch) {
+                    gameScore(1);
+                }
+                setSelectedCards([]);
+            }, isMatch ? 0 : 1000);
+            return () => clearTimeout(timerId);
         }
-    }, [selectedCards, gameCards, onPlay, updateGameBoard])
+    }, [selectedCards, gameCards, gameScore, updateGameBoard])
 
     const handleClick = (selectedCard: CardValues) => {
         if (selectedCards.length < 2) {

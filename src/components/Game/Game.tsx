@@ -17,19 +17,18 @@ const Game = () => {
 
     const shuffledCards = shuffleCards([...images]);
 
-    const [cards, setcards] = useState(shuffledCards);
+    const [score, setScore] = useState(0);
 
-    function handlePlay(newCards: CardValues[]) {
-        console.log('updatedCards', newCards)
-        setcards(newCards)
+    function handleScore(score: number) {
+        setScore(prevScore => prevScore + 1);
     }
 
     return (
         <div>
             <h1>Matching Cards </h1>
-            <h3>Total Score: 0</h3>
+            <h3>{`Total Score: ${score}`}</h3>
             <div className="game-container">
-                <Board cards={cards} onPlay={handlePlay} />
+                <Board cards={shuffledCards} gameScore={handleScore} />
                 <History />
             </div>
         </div>
