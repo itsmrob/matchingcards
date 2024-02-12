@@ -1,0 +1,8 @@
+.game-controls-button {
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+    font-weight: 800;
+    color: #fff;
+    border-color: transparent;
+}

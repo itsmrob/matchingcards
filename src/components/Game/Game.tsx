@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Board from '../Board/Board';
-import History from '../History/History';
+import GameControls from '../Controls/GameControls';
 import { images } from '../../constants/images';
 import { CardValues } from '../../types';
 
@@ -23,13 +23,17 @@ const Game = () => {
         setScore(prevScore => prevScore + 1);
     }
 
+    function handleControls(status: string) {
+        console.log(status)
+    }
+
     return (
         <div>
             <h1>Matching Cards </h1>
             <h3>{`Total Score: ${score}`}</h3>
             <div className="game-container">
                 <Board cards={shuffledCards} gameScore={handleScore} />
-                <History />
+                <GameControls gameStatus={handleControls}/>
             </div>
         </div>
     )
