@@ -4,15 +4,17 @@ import Button from '../Button/Button';
 import './GameControls.css'
 
 interface GameControlsProps {
-    gameStatus: (status: string) => void;
+  onStart: () => void;
+  onRestart: () => void;
+  onShowCards: () => void;
 }
 
-const GameControls: React.FC<GameControlsProps> = ({ gameStatus }) => {
+const GameControls: React.FC<GameControlsProps> = ({ onStart, onRestart, onShowCards }) => {
   return (
     <div className='game-controls'>
-      <Button buttonType='primary' onButtonClick={() => gameStatus('start')}>Start</Button>
-      <Button buttonType='danger' onButtonClick={() => gameStatus('restart')} >Restart</Button>
-      <Button buttonType='info' onButtonClick={() => gameStatus('show')}>Show cards</Button>
+      <Button buttonType='primary' onButtonClick={onStart}>Start</Button>
+      <Button buttonType='danger' onButtonClick={onRestart} >Restart</Button>
+      <Button buttonType='info' onButtonClick={onShowCards}>Show cards</Button>
     </div>
   )
 }

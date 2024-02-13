@@ -42,6 +42,10 @@ const Board: React.FC<BoardProps> = ({ cards, gameScore }) => {
         }
     }, [selectedCards, gameCards, gameScore, updateGameBoard])
 
+    useEffect(() => {
+        setGameCards([...cards]);
+    }, [cards])
+
     const handleClick = (selectedCard: CardValues) => {
         if (selectedCards.length < 2) {
             const updatedCards = gameCards.map((card) => {
